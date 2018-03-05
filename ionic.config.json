@@ -1,0 +1,8 @@
+{
+  "name": "findaconcert",
+  "app_id": "06a1cdc2",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!--<ion-content padding>
+  <div *ngFor="let t of test">
+    {{t.name}}
+  </div>
+</ion-content>-->
+<ion-content padding>
+  <div *ngIf="concertList">
+    <h1>Concerts</h1>
+    <div id="console">console</div>
+    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+
+    <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+    </div>
+    <div *ngFor="let concert of concertList">
+
+      <ion-card (click)='goToDetailPage(concert);'>
+        <!--<ion-card-header *ngIf="concert.ConcertPerformers.length > 0">
+          {{concert.ConcertPerformers[0].Performer.Name}}
+        </ion-card-header>-->
+        <img src="{{concert.ImageSourceLink}}" />
+        <ion-card-content>
+          <ion-card-title>
+            {{concert.Name}}
+          </ion-card-title>
+          <p>{{concert.ConcertPerformers[0].Performer.Name}}</p>
+          <div *ngFor="let performance of concert.ConcertDates">
+            <span>{{performance.ConcertDateTime| date :  "dd MMM y"}}</span>
+            <span *ngIf="performance.Venue"> - {{performance.Venue.Name}}</span>
+          </div>
+          <ion-row no-padding>
+            <ion-col>
+              <button ion-button clear small color="blue" icon-start>
+                <ion-icon name='star'></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col text-center>
+              <button ion-button clear small color="blue" icon-start>
+                <ion-icon name='chatboxes'></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col text-right>
+              <button ion-button clear small color="blue" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
